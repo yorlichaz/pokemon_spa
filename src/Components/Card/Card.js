@@ -1,24 +1,16 @@
-import React, { Fragment } from 'react';
-import './Card.css'
-
+import React from "react";
+import FrontCard from "./FrontCard";
+import "./Card.css";
+import BackCard from "./BackCard";
 
 const card = () => {
   return (
-      <div className="card">
-        <div className="inner">
-          <div className="front-card">
-            <img
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-              alt="bulbasaur"
-            />
-            <figcaption className="caption">bulbasaur</figcaption>
-          </div>
-          <div className="back-card">
-            <p> Type: Grass</p>
-            <p> Test </p>
-          </div>
-        </div>
-        </div>
+    <div className="card">
+      <div className="inner">
+        <FrontCard />
+        <BackCard />
+      </div>
+    </div>
   );
 };
 
