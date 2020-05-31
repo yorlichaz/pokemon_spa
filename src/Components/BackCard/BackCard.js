@@ -1,5 +1,5 @@
 import React from "react";
-import "./Card.css";
+import "./BackCard.css";
 
 const back_card = () => {
   return (
@@ -13,9 +13,9 @@ const back_card = () => {
         <dd>Spec Def: 50</dd>
         <dd>Speed: 50</dd>
       </dl>
-      <p> Type </p>
-      <p> Evolution </p>
-      <p> Ability </p>
+      <p> Type: Grass </p>
+      <p> Evolution: Ivysaur </p>
+      <p> Ability: Stuff </p>
     
     </div>
   );

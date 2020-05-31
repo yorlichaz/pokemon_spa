@@ -1,5 +1,5 @@
 import React from "react";
-import './Card.css';
+import './FrontCard.css';
 
 const front_card = () => {
   return (

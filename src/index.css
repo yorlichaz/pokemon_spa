@@ -12,10 +12,14 @@ code {
     monospace;
 }
 
-.container{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(225px,1fr));
-  justify-items: center;
-  row-gap: 20px;
-  padding: 20px;
+.root-container{
+  display: flex;
+  flex-direction: column;
 }
+
+h1{
+  font-size: 60px;
+  align-self: center;
+}
+
+
