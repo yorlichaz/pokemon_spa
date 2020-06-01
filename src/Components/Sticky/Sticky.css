@@ -1,0 +1,7 @@
+.sticky{
+    position: sticky;
+    top: 0;
+    text-align: center;
+    width: 100vw;
+    background-color: #484538;
+}

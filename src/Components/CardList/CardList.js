@@ -11,6 +11,7 @@ const card_list = () =>{
             <Card/>
             <Card/>
             <Card/>
+            <Card/>
         </div>
     );
 };
