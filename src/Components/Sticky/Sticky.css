@@ -4,4 +4,6 @@
     text-align: center;
     width: 100vw;
     background-color: #484538;
+    z-index: 1;
+    padding-bottom: 15px;
 }
