@@ -5,12 +5,29 @@ import Scroll from '../Scroll/Scroll';
 import CardList from '../CardList/CardList';
 import Sticky from '../Sticky/Sticky';
 
-function App() {
+import setSearchBox from '../SearchBox/actions';
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state) =>{
+  return {
+    searchField: state.searchField
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchChange: (event) => {
+      dispatch(setSearchBox(event.target.value));
+    }
+  }
+}
+
+const App = ({onSearchChange}) => {
   return (
     <div className="root-container">
       <Sticky>
         <h1>Pokedex</h1>
-        <SearchBox />
+        <SearchBox onChange = {onSearchChange}/>
       </Sticky>
       <Scroll>
         <CardList />
@@ -19,4 +36,5 @@ function App() {
   );
 }
 
-export default App;
+export default connect(mapStateToProps,mapDispatchToProps)(App);
+

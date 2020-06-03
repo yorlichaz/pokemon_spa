@@ -1,13 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./Components/App/App";
+import App from './Components/App/App';
 import * as serviceWorker from "./serviceWorker";
+import { Provider } from 'react-redux';         // passing store to containers
+import { createStore, applyMiddleware } from 'redux';            // create app (store) state
+import changeSearchBox from './Components/SearchBox/reducer';
+import { createLogger } from "redux-logger";
+
+const store = createStore(changeSearchBox, applyMiddleware(createLogger()));
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App/>
+    <Provider store = {store}>
+      <App/>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
