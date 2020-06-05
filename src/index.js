@@ -4,11 +4,24 @@ import "./index.css";
 import App from './Components/App/App';
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from 'react-redux';         // passing store to containers
-import { createStore, applyMiddleware } from 'redux';            // create app (store) state
+import { createStore, applyMiddleware, combineReducers } from 'redux';            // create app (store) state
 import changeSearchBox from './Components/SearchBox/reducer';
+import setPokemon from './Components/App/reducers';
 import { createLogger } from "redux-logger";
+import thunkMiddleware from 'redux-thunk';
 
-const store = createStore(changeSearchBox, applyMiddleware(createLogger()));
+
+
+const rootReducer = combineReducers({
+  setPokemon,
+  changeSearchBox
+})
+
+const store = createStore(rootReducer, 
+  applyMiddleware(
+    createLogger(),
+    thunkMiddleware)
+    );
 
 
 ReactDOM.render(
