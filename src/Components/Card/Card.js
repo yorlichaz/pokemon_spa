@@ -3,15 +3,15 @@ import FrontCard from "../FrontCard/FrontCard";
 import "./Card.css";
 import BackCard from "../BackCard/BackCard";
 
-const card = ({name}) => {
+const Card = ({id, pokemon}) => {
   return (
-    <div className="card">
+    <div className="card" key={id}>
       <div className="inner">
-        <FrontCard name={name}/>
-        <BackCard/>
+        <FrontCard name={pokemon.name} image={pokemon.image}/>
+        <BackCard abilities={pokemon.abilities} stats={pokemon.stats} types={pokemon.types}/>
       </div>
     </div>
   );
 };
 
-export default card;
+export default Card;

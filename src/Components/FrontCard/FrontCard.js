@@ -1,16 +1,16 @@
 import React from "react";
 import './FrontCard.css';
 
-const front_card = ({name}) => {
+const FrontCard = ({name, image}) => {
   return (
     <div className="front-card">
       <img
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-        alt="bulbasaur"
+        src={image}
+        alt={name}
       />
       <figcaption className="caption">{name}</figcaption>
     </div>
   );
 };
 
-export default front_card;
+export default FrontCard;

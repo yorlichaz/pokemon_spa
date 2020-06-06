@@ -4,6 +4,8 @@ import {
   FETCH_POKEMON_FAILURE,
 } from "./actionTypes";
 
+import fetchPokemons from '../../utils/fetchPokemon';
+
 export const fetchingPokemon = () =>{
   return {
     type: FETCH_POKEMON_PENDING
@@ -27,10 +29,7 @@ export const failedPokemon = (error) =>{
 export const callPokemonAPI = () =>{
   return (async (dispatch) =>{
     dispatch(fetchingPokemon());
-
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
-    const jsonResp = await response.json();
-    dispatch(recievedPokemon(jsonResp.results));
+    dispatch(recievedPokemon(await fetchPokemons()));
   })
 }
 

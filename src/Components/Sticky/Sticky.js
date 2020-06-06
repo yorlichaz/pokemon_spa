@@ -1,7 +1,7 @@
 import React from 'react';
 import './Sticky.css';
 
-const sticky = (props)=>{
+const Sticky = (props)=>{
     return (
         <div className='sticky' >
             {props.children}
@@ -10,4 +10,4 @@ const sticky = (props)=>{
 
 };
 
-export default sticky;
+export default Sticky;

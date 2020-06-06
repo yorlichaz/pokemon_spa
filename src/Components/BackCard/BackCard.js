@@ -1,24 +1,36 @@
 import React from "react";
 import "./BackCard.css";
+import {PieChart} from 'react-minimal-pie-chart';
 
-const back_card = () => {
+const BackCard = ({abilities, stats, types }) => {
+  const colors = ["yellow","green","blue","red","orange","gray"]
+
   return (
     <div className="back-card">
-      <dl className='stats-grid'>
-        <dt>Base Stats</dt>
-        <dd>Hp: 50</dd>
-        <dd>Attack: 50</dd>
-        <dd>Defence: 50</dd>
-        <dd>Spec Attk: 50</dd>
-        <dd>Spec Def: 50</dd>
-        <dd>Speed: 50</dd>
-      </dl>
-      <p> Type: Grass </p>
-      <p> Evolution: Ivysaur </p>
-      <p> Ability: Stuff </p>
-    
+      <PieChart data={ stats.map((stat, i) =>{
+        return {
+          title: stat.name,
+          value: stat.value,
+          color: colors[i],
+          key: i,
+        }
+      })}/>
+      <p>
+        Types:{" "} 
+        {types.map((type, id) => {
+          return <span key={id}>{type.name}, </span>;
+        })}
+      </p>
+      <p> Evolution: WIP </p>
+      <p>
+        Abilities:
+        {abilities.map((ability,id) => {
+          return <span key={id}>{ability.name}</span>;
+        })}
+      </p>
     </div>
   );
 };
 
-export default back_card;
+
+export default BackCard;
