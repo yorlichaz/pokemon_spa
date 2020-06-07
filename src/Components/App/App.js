@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import "./App.css";
 import SearchBox from "../SearchBox/SearchBox";
 import Scroll from "../Scroll/Scroll";
@@ -7,14 +7,17 @@ import Sticky from "../Sticky/Sticky";
 import getRandomFromArray from "../../utils/getRandomFromArray";
 import filterArrayByName from "../../utils/filterArrayByName";
 import setSearchBox from "../SearchBox/actions";
-import { callPokemonAPI } from "./actions";
+import { callPokemonAPI, failedPokemon } from "./actions";
 import { connect } from "react-redux";
+import ErrorBoundry from "../ErrorBoundry/ErrorBoundry";
 
 const mapStateToProps = (state) => {
   return {
     searchField: state.changeSearchBox.searchField,
     isPending: state.setPokemon.isPending,
     pokemons: state.setPokemon.pokemon,
+    hasError: state.setPokemon.hasError,
+    error: state.setPokemon.error,
   };
 };
 
@@ -23,6 +26,9 @@ const mapDispatchToProps = (dispatch) => {
     fetchPokemon: () => dispatch(callPokemonAPI()),
     onSearchChange: (event) => {
       dispatch(setSearchBox(event.target.value));
+    },
+    onError: (error) => {
+      dispatch(failedPokemon(error));
     },
   };
 };
@@ -48,33 +54,39 @@ const mapDispatchToProps = (dispatch) => {
 
 class App extends React.Component {
 
-  componentDidMount(){
-    this.props.fetchPokemon();
+  async componentDidMount() {
+    try{
+      await this.props.fetchPokemon();
+    }catch(err){
+      this.props.onError();
+    }
   }
 
   render() {
-    const {onSearchChange, pokemons, isPending, searchField} = this.props;
+    const { onSearchChange, pokemons, isPending, searchField } = this.props;
 
     return (
-      <div className="root-container">
+      <Fragment>
         <Sticky>
           <h1>Pokedex</h1>
           <SearchBox onChange={onSearchChange} />
         </Sticky>
-        <Scroll>
+        <Scroll>  
           {isPending ? (
             <h1> Loading... </h1>
           ) : (
-            <CardList
-              pokemons={
-                searchField
-                  ? filterArrayByName(pokemons, searchField).slice(0,20)
-                  : getRandomFromArray(pokemons, 15)
-              }
-            />
+            <ErrorBoundry>
+              <CardList
+                pokemons={
+                  searchField
+                    ? filterArrayByName(pokemons, searchField).slice(0, 20)
+                    : getRandomFromArray(pokemons, 15)
+                }
+              />
+            </ErrorBoundry>
           )}
         </Scroll>
-      </div>
+      </Fragment>
     );
   }
 }

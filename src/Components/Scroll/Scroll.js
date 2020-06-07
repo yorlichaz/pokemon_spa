@@ -3,9 +3,9 @@ import './Scroll.css'
 
 const Scroll = (props)=>{
     return (
-        <div className='scrollable' >
+        <section className='scrollable' >
             {props.children}
-        </div>
+        </section>
     )
 
 };

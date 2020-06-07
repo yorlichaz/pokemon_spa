@@ -1,33 +1,22 @@
 import React from "react";
 import "./BackCard.css";
-import {PieChart} from 'react-minimal-pie-chart';
+import Pie from "../Pie/Pie";
+
 
 const BackCard = ({abilities, stats, types }) => {
-  const colors = ["yellow","green","blue","red","orange","gray"]
-
   return (
     <div className="back-card">
-      <PieChart data={ stats.map((stat, i) =>{
-        return {
-          title: stat.name,
-          value: stat.value,
-          color: colors[i],
-          key: i,
-        }
-      })}/>
-      <p>
-        Types:{" "} 
-        {types.map((type, id) => {
-          return <span key={id}>{type.name}, </span>;
-        })}
-      </p>
-      <p> Evolution: WIP </p>
-      <p>
-        Abilities:
-        {abilities.map((ability,id) => {
-          return <span key={id}>{ability.name}</span>;
-        })}
-      </p>
+      <span style={{alignSelf: "center", paddingTop: "5px", fontWeight: "bolder"}}>Base Stats</span>
+      <Pie
+      stats={stats}
+      />
+      <span>
+        {`Types: ${(types.map((type) => type.name)).join(", ")}`}
+      </span>
+      <span> Evolution: WIP </span>
+      <span>
+        {`Abilities: ${(abilities.map((ability) => ability.name)).join(", ")}`}
+      </span>
     </div>
   );
 };

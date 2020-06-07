@@ -1,5 +1,6 @@
 const fetchPokemons = async () => {
-  const pokemons = await getAllResults("https://pokeapi.co/api/v2/pokemon/");
+  // const pokemons = await getAllResults("https://pokeapi.co/api/v2/pokemon");
+  const pokemons = await pokemonApiGetAll("https://pokeapi.co/api/v2/pokemon?limit=1000");
   return await buildUIReadableObject(pokemons);
 };
 
@@ -34,15 +35,20 @@ const buildUIReadableObject = async (pokemons) => {
   )).filter(pokemon => pokemon.image !== null);
 };
 
-const getAllResults = async (url) => {
-  const response = await (await fetch(url)).json();
 
-  if (response.next === null) {
-    return response.results;
-  } else {
-    let rest = await getAllResults(response.next);
-    return response.results.concat(rest);
-  }
-};
+const pokemonApiGetAll= async (url) =>{
+  return (await(await fetch(url)).json()).results;
+}
+
+// const getAllResults = async (url) => {
+//   const response = await (await fetch(url)).json();
+
+//   if (response.next === null) {
+//     return response.results;
+//   } else {
+//     let rest = await getAllResults(response.next);
+//     return response.results.concat(rest);
+//   }
+// };
 
 export default fetchPokemons;

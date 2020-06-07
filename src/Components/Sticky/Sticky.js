@@ -3,9 +3,9 @@ import './Sticky.css';
 
 const Sticky = (props)=>{
     return (
-        <div className='sticky' >
+        <header className='sticky' >
             {props.children}
-        </div>
+        </header>
     )
 
 };
