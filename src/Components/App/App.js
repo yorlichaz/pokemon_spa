@@ -1,11 +1,10 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect, useMemo} from "react";
 import "./App.css";
 import SearchBox from "../SearchBox/SearchBox";
 import Scroll from "../Scroll/Scroll";
 import CardList from "../CardList/CardList";
 import Sticky from "../Sticky/Sticky";
-import getRandomFromArray from "../../utils/getRandomFromArray";
-import filterArrayByName from "../../utils/filterArrayByName";
+import { getRandomFromArray, filterArrayByText } from "../../lib/arrayUtil"
 import setSearchBox from "../SearchBox/actions";
 import { callPokemonAPI, failedPokemon } from "./actions";
 import { connect } from "react-redux";
@@ -33,62 +32,26 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-// const App = ({onSearchChange, fetchPokemon, pokemons, isPending, searchField}) => {
-//   console.log("in");
-//   useEffect(()=>{
-//     fetchPokemon();
-//   },[fetchPokemon]);
+const App = ({onSearchChange, fetchPokemon, pokemons, isPending, searchField}) => {
+  
+  useEffect(()=>{
+    fetchPokemon();
+  },[fetchPokemon]);
 
-//   return (
-//     <div className="root-container">
-//       <Sticky>
-//         <h1>Pokedex</h1>
-//         <SearchBox onChange = {onSearchChange}/>
-//       </Sticky>
-//       <Scroll>
-//         {isPending? <h1> Loading... </h1>: <CardList pokemons={searchField? filterArrayByName(pokemons,searchField): getRandomFromArray(pokemons,10)}/>}
-//       </Scroll>
-//     </div>
-//   );
-// }
+  const randomPokemon = useMemo(() => getRandomFromArray(pokemons,15),[pokemons])
 
-class App extends React.Component {
-
-  async componentDidMount() {
-    try{
-      await this.props.fetchPokemon();
-    }catch(err){
-      this.props.onError();
-    }
-  }
-
-  render() {
-    const { onSearchChange, pokemons, isPending, searchField } = this.props;
-
-    return (
-      <Fragment>
-        <Sticky>
-          <h1>Pokedex</h1>
-          <SearchBox onChange={onSearchChange} />
-        </Sticky>
-        <Scroll>  
-          {isPending ? (
-            <h1> Loading... </h1>
-          ) : (
-            <ErrorBoundry>
-              <CardList
-                pokemons={
-                  searchField
-                    ? filterArrayByName(pokemons, searchField).slice(0, 20)
-                    : getRandomFromArray(pokemons, 15)
-                }
-              />
-            </ErrorBoundry>
-          )}
-        </Scroll>
-      </Fragment>
-    );
-  }
+  return (
+    <Fragment>
+      <Sticky>
+        <h1>Pokedex</h1>
+        <SearchBox onChange = {onSearchChange}/>
+      </Sticky>
+      <Scroll>
+        {isPending? <h1> Loading... </h1>: <CardList pokemons={searchField? filterArrayByText(pokemons,searchField,15): randomPokemon}/>}
+      </Scroll>
+    </Fragment>
+  );
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
