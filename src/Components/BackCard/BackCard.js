@@ -11,11 +11,10 @@ const BackCard = ({abilities, stats, types }) => {
       stats={stats}
       />
       <span>
-        {`Types: ${(types.map((type) => type.name)).join(", ")}`}
+        {`Types: ${types.join(", ")}`}
       </span>
-      <span> Evolution: WIP </span>
       <span>
-        {`Abilities: ${(abilities.map((ability) => ability.name)).join(", ")}`}
+        {`Abilities: ${abilities.join(", ")}`}
       </span>
     </div>
   );

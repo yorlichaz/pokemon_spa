@@ -13,10 +13,10 @@ const Pie = ({ stats }) => {
       paddingAngle={15}
       rounded
       radius={40}
-      data={stats.map((stat, i) => {
+      data={Object.keys(stats).map((key, i) => {
         return {
-          title: stat.name,
-          value: stat.value,
+          title: key,
+          value: stats[key],
           color: colors[i],
           key: i,
         };

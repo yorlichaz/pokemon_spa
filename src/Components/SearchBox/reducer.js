@@ -7,8 +7,7 @@ const initialState = {
 const changeSearchBox = (state = initialState, action = {}) => {
     switch (action.type){
         case SET_SEARCH_BOX:
-            return Object.assign({},state, { searchField: action.text});
-        
+            return {...state, searchField: action.text};
         default:
             return state;
     }

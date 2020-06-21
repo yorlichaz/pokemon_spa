@@ -14,20 +14,19 @@ const initialState = {
 const setPokemon = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_POKEMON_PENDING:
-      return Object.assign({}, state, { isPending: true });
-
+      return {...state, isPending: true };
     case FETCH_POKEMON_SUCCESS:
-      return Object.assign({}, state, {
+      return {...state,
         pokemon: action.pokemon,
         isPending: false,
-      });
+      };
       
     case FETCH_POKEMON_FAILURE:
-      return Object.assign({}, state, { 
+      return {...state, 
         hasEror: true,
         error: action.error,
         isPending: false,
-      });
+      };
 
     default:
       return state;
