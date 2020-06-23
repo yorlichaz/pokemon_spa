@@ -8,6 +8,7 @@ const BackCard = ({abilities, stats, types }) => {
     <div className="back-card">
       <span style={{alignSelf: "center", paddingTop: "5px", fontWeight: "bolder"}}>Base Stats</span>
       <Pie
+      syle={{flexBasis: "50%"}}
       stats={stats}
       />
       <span>

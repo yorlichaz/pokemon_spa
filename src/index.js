@@ -5,8 +5,8 @@ import App from './Components/App/App';
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from 'react-redux';         // passing store to containers
 import { createStore, applyMiddleware, combineReducers } from 'redux';            // create app (store) state
-import changeSearchBox from './Components/SearchBox/reducer';
-import setPokemon from './Components/App/reducers';
+import changeSearchBox from './Components/Header/reducer';
+import setPokemon from './Components/PokemonGrid/reducers';
 import { createLogger } from "redux-logger";
 import thunkMiddleware from 'redux-thunk';
 
