@@ -7,7 +7,7 @@ import {
 const initialState = {
   pokemon: [],
   isPending: false,
-  hasEror: false,
+  hasError: false,
   error: ''
 };
 
@@ -23,7 +23,7 @@ const setPokemon = (state = initialState, action = {}) => {
       
     case FETCH_POKEMON_FAILURE:
       return {...state, 
-        hasEror: true,
+        hasError: true,
         error: action.error,
         isPending: false,
       };

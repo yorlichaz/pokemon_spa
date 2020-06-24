@@ -29,7 +29,11 @@ export const failedPokemon = (error) =>{
 export const callPokemonAPI = () =>{
   return (async (dispatch) =>{
     dispatch(fetchingPokemon());
+    try{
     dispatch(recievedPokemon(await fetchPokemons()));
+    }catch(err){
+      dispatch(failedPokemon(err));
+    }
   })
 }
 
