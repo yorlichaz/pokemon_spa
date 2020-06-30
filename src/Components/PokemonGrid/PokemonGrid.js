@@ -27,12 +27,12 @@ const PokemonGrid = () => {
 
   return (
     <Scroll>
-      <ErrorBoundary>
-        {hasError ? (
-          <h1>Something Went Wrong...</h1>
-        ) : isPending ? (
-          <h1>Loading...</h1>
-        ) : (
+      {hasError ? (
+        <h1>Something Went Wrong...</h1>
+      ) : isPending ? (
+        <h1>Loading...</h1>
+      ) : (
+        <ErrorBoundary>
           <CardList
             pokemons={
               searchField
@@ -40,8 +40,8 @@ const PokemonGrid = () => {
                 : randomPokemon
             }
           />
-        )}
-      </ErrorBoundary>
+        </ErrorBoundary>
+      )}
     </Scroll>
   );
 };

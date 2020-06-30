@@ -8,13 +8,14 @@ const BackCard = ({abilities, stats, types }) => {
     <div className="back-card">
       <span style={{alignSelf: "center", paddingTop: "5px", fontWeight: "bolder"}}>Base Stats</span>
       <Pie
+      data-testid="stats-pie"
       syle={{flexBasis: "50%"}}
       stats={stats}
       />
-      <span>
+      <span data-testid= "types-test">
         {`Types: ${types.join(", ")}`}
       </span>
-      <span>
+      <span data-testid= "abilities-test">
         {`Abilities: ${abilities.join(", ")}`}
       </span>
     </div>
