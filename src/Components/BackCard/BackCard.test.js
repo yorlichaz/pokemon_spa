@@ -21,6 +21,7 @@ it("Should render pokemon info", () => {
     />
   );
 
+  expect(getByTestId("container-test").childElementCount).toBe(4);
   expect(getByTestId("types-test")).toHaveTextContent("Types: nothing");
   expect(getByTestId("abilities-test")).toHaveTextContent("Abilities: test");
 });
