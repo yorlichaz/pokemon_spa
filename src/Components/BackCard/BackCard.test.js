@@ -4,24 +4,18 @@ import "@testing-library/jest-dom";
 import { render, cleanup } from "@testing-library/react";
 
 afterEach(cleanup);
+jest.mock('../Pie/Pie.js', () => ()=> <div data-testid="pie-test">Pie Chart</div>);
 
 it("Should render pokemon info", () => {
   const { getByTestId } = render(
     <BackCard
       abilities={["test"]}
-      stats={{
-        test1: 50,
-        test2: 60,
-        test3: 70,
-        test4: 80,
-        test5: 90,
-        test6: 100,
-      }}
+      stats={{}}
       types={["nothing"]}
     />
   );
 
-  expect(getByTestId("container-test").childElementCount).toBe(4);
+  expect(getByTestId("pie-test")).toBeInTheDocument();
   expect(getByTestId("types-test")).toHaveTextContent("Types: nothing");
   expect(getByTestId("abilities-test")).toHaveTextContent("Abilities: test");
 });

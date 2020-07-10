@@ -6,7 +6,7 @@ import BackCard from "../BackCard/BackCard";
 const Card = ({id, pokemon}) => {
   return (
     <div className="card" key={id}>
-      <div className="inner">
+      <div className="inner" data-testid="card-info">
         <FrontCard name={pokemon.name} image={pokemon.image}/>
         <BackCard abilities={pokemon.abilities} stats={pokemon.stats} types={pokemon.types}/>
       </div>

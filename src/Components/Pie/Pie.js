@@ -11,7 +11,7 @@ const Pie = ({ stats }) => {
       style={{height: "50%", padding: "5px 0 5px 0"}} 
       lineWidth={20}
       paddingAngle={15}
-      rounded
+      rounded={true}
       radius={40}
       data={Object.keys(stats).map((key, i) => {
         return {

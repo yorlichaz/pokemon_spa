@@ -5,6 +5,7 @@ const SearchBox = ({onChange}) =>{
     return(
         <Fragment>
             <input
+            data-testid="search-bar"
             className= 'search-box' 
             type="text"
             placeholder="Search Pokemon"
